@@ -54,12 +54,12 @@ CREATE TABLE molthome.channels (
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- API Keys table
+-- API Keys table (supports Anthropic, OpenAI, Gemini)
 CREATE TABLE molthome.api_keys (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES molthome.users(id) ON DELETE CASCADE,
   name TEXT NOT NULL,
-  type TEXT NOT NULL CHECK (type IN ('anthropic')),
+  type TEXT NOT NULL CHECK (type IN ('anthropic', 'openai', 'gemini')),
   encrypted_value TEXT NOT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );

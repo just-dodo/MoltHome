@@ -26,7 +26,7 @@ export default function SettingsPage() {
             <CardHeader>
               <CardTitle className="text-white">API Keys</CardTitle>
               <CardDescription className="text-slate-400">
-                Manage your Anthropic API keys
+                Manage your AI provider API keys (Anthropic, OpenAI, Gemini)
               </CardDescription>
             </CardHeader>
           </Card>
