@@ -1,0 +1,5 @@
+# Secrets - NEVER commit
+.env
+
+# Local state
+*.log
