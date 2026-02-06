@@ -6,7 +6,7 @@ interface SlackMessagePayload {
 }
 
 const SLACK_WEBHOOK_URL =
-  'https://hooks.slack.com/services/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';
+  'https://hooks.slack.com/services/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';
 
 async function sendSlackMessage(payload: SlackMessagePayload) {
   try {
