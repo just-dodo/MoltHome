@@ -35,7 +35,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       headingBefore: "Don't Buy ",
       headingPrice: "Mac mini for $599",
       headingAfter: "",
-      headingLine2: "$30/m is enough to give it a try.",
+      headingLine2: "$30 is enough to give it a try.",
       subtitle1: "On Google Cloud Platform, your privacy is safe.",
       subtitle2: "Meet OpenClaw, your personal assistant, for $30/m.",
     },
