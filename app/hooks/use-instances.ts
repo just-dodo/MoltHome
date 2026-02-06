@@ -7,7 +7,10 @@ type Instance = Database['molthome']['Tables']['instances']['Row']
 
 async function fetchInstances(): Promise<Instance[]> {
   const res = await fetch('/api/instances')
-  if (!res.ok) throw new Error('Failed to fetch instances')
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.error || 'Failed to fetch instances')
+  }
   const { data } = await res.json()
   return data
 }
@@ -18,7 +21,10 @@ async function createInstance(input: { name: string; zone: string; aiProvider?: 
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(input),
   })
-  if (!res.ok) throw new Error('Failed to create instance')
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.error || 'Failed to create instance')
+  }
   const { data } = await res.json()
   return data
 }

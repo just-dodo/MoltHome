@@ -11,6 +11,26 @@ export async function GET() {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  // Ensure user exists in molthome.users
+  const { data: existingUser } = await supabase
+    .schema('molthome')
+    .from('users')
+    .select('id')
+    .eq('id', user.id)
+    .single()
+
+  if (!existingUser) {
+    await supabase
+      .schema('molthome')
+      .from('users')
+      .insert({
+        id: user.id,
+        email: user.email!,
+        name: user.user_metadata?.full_name || null,
+        avatar_url: user.user_metadata?.avatar_url || null,
+      })
+  }
+
   const { data, error } = await supabase
     .schema('molthome')
     .from('instances')
@@ -32,6 +52,29 @@ export async function POST(request: NextRequest) {
 
   if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  // Ensure user exists in molthome.users (may not exist if they signed up before migration)
+  const { data: existingUser } = await supabase
+    .schema('molthome')
+    .from('users')
+    .select('id')
+    .eq('id', user.id)
+    .single()
+
+  if (!existingUser) {
+    const { error: userError } = await supabase
+      .schema('molthome')
+      .from('users')
+      .insert({
+        id: user.id,
+        email: user.email!,
+        name: user.user_metadata?.full_name || null,
+        avatar_url: user.user_metadata?.avatar_url || null,
+      })
+    if (userError && !userError.message.includes('duplicate')) {
+      return NextResponse.json({ error: 'Failed to create user profile: ' + userError.message }, { status: 500 })
+    }
   }
 
   const body = await request.json()
