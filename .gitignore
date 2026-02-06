@@ -1,2 +1,7 @@
 
 **/.omc/**
+
+# Secrets
+gcp/molthome-ssh
+gcp/molthome-ssh.pub
+gcp/*.json

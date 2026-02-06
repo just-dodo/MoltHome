@@ -57,7 +57,7 @@ export async function createVM(options: CreateVMOptions) {
       tags: { items: ['http-server', 'https-server', 'openclaw'] },
       metadata: {
         items: [
-          { key: 'enable-oslogin', value: 'true' },
+          { key: 'ssh-keys', value: `${process.env.GCP_SSH_USER || 'openclaw'}:${process.env.GCP_SSH_PUBLIC_KEY || ''}` },
         ],
       },
     },

@@ -1,7 +1,22 @@
 import { NodeSSH } from 'node-ssh'
+import fs from 'fs'
+import path from 'path'
 
 const GCP_SSH_USER = process.env.GCP_SSH_USER || 'openclaw'
-const GCP_SSH_PRIVATE_KEY = process.env.GCP_SSH_PRIVATE_KEY
+
+function getPrivateKey(): string | undefined {
+  // Try inline key from env (replace literal \n with newlines)
+  if (process.env.GCP_SSH_PRIVATE_KEY) {
+    return process.env.GCP_SSH_PRIVATE_KEY.replace(/\\n/g, '\n')
+  }
+  // Try key file
+  const keyPath = process.env.GCP_SSH_KEY_PATH ||
+    path.join(process.cwd(), '..', 'gcp', 'molthome-ssh')
+  if (fs.existsSync(keyPath)) {
+    return fs.readFileSync(keyPath, 'utf-8')
+  }
+  return undefined
+}
 
 export interface SSHOptions {
   timeout?: number
@@ -18,7 +33,7 @@ export async function executeSSH(
     await ssh.connect({
       host,
       username: GCP_SSH_USER,
-      privateKey: GCP_SSH_PRIVATE_KEY,
+      privateKey: getPrivateKey(),
       readyTimeout: options.timeout || 30000,
     })
 
@@ -47,7 +62,7 @@ export async function uploadFile(
     await ssh.connect({
       host,
       username: GCP_SSH_USER,
-      privateKey: GCP_SSH_PRIVATE_KEY,
+      privateKey: getPrivateKey(),
     })
 
     await ssh.putFile(localPath, remotePath)
