@@ -66,7 +66,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     waitlist: {
       placeholder: "이메일",
-      submit: "대기자 등록",
+      submit: "대기 등록",
       joined: "등록 완료!",
       hint: "출시 이메일을 보내드립니다",
       errorRequired: "이메일을 입력해주세요",
