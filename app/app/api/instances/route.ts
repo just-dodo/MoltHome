@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { createInstanceSchema } from '@/lib/utils/validation'
 import { randomUUID } from 'crypto'
+import { deployOpenClaw } from '@/lib/openclaw/deploy'
 
 export async function GET() {
   const supabase = await createClient()
@@ -117,6 +118,61 @@ export async function POST(request: NextRequest) {
       type: aiProvider,
       encrypted_value: aiApiKey, // TODO: encrypt with ENCRYPTION_KEY in production
     })
+
+  // Trigger deployment asynchronously (don't await — runs in background)
+  deployOpenClaw({
+    instanceId: data.id,
+    gcpInstanceName: data.gcp_instance_name,
+    zone: data.zone,
+    gatewayToken: data.gateway_token,
+    aiProvider,
+    aiApiKey,
+    onProgress: async (step, message) => {
+      // Update deployment log in real-time
+      const { data: current } = await supabase
+        .schema('molthome')
+        .from('instances')
+        .select('deployment_log')
+        .eq('id', data.id)
+        .single()
+
+      const logs = Array.isArray(current?.deployment_log) ? current.deployment_log : []
+      logs.push({ step, message, timestamp: new Date().toISOString() })
+
+      await supabase
+        .schema('molthome')
+        .from('instances')
+        .update({ deployment_log: logs })
+        .eq('id', data.id)
+    },
+  }).then(async (result) => {
+    // Mark as running on success
+    await supabase
+      .schema('molthome')
+      .from('instances')
+      .update({
+        status: 'running',
+        external_ip: result.externalIp,
+      })
+      .eq('id', data.id)
+  }).catch(async (error) => {
+    // Mark as error on failure
+    const { data: current } = await supabase
+      .schema('molthome')
+      .from('instances')
+      .select('deployment_log')
+      .eq('id', data.id)
+      .single()
+
+    const logs = Array.isArray(current?.deployment_log) ? current.deployment_log : []
+    logs.push({ step: 'error', message: String(error), timestamp: new Date().toISOString() })
+
+    await supabase
+      .schema('molthome')
+      .from('instances')
+      .update({ status: 'error', deployment_log: logs })
+      .eq('id', data.id)
+  })
 
   return NextResponse.json({ data })
 }
