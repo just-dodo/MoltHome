@@ -14,8 +14,8 @@ export function DashboardSidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="w-64 bg-slate-900 border-r border-slate-800 min-h-screen p-4">
-      <Link href="/dashboard" className="text-xl font-bold text-white block mb-8">
+    <aside className="w-64 bg-card border-r border-border min-h-screen p-4">
+      <Link href="/dashboard" className="text-xl font-bold block mb-8">
         MoltHome
       </Link>
       <nav className="space-y-1">
@@ -26,8 +26,8 @@ export function DashboardSidebar() {
             className={cn(
               'flex items-center gap-3 px-3 py-2 rounded-lg transition',
               pathname === item.href || pathname.startsWith(item.href + '/')
-                ? 'bg-slate-800 text-white'
-                : 'text-slate-400 hover:bg-slate-800/50 hover:text-white'
+                ? 'bg-accent text-accent-foreground'
+                : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
             )}
           >
             <span>{item.icon}</span>

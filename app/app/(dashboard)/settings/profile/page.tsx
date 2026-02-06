@@ -48,24 +48,24 @@ export default function ProfilePage() {
     <div className="max-w-2xl">
       <div className="mb-8">
         <h1 className="text-2xl font-bold">Profile Settings</h1>
-        <p className="text-slate-400">Manage your account information</p>
+        <p className="text-muted-foreground">Manage your account information</p>
       </div>
 
-      <Card className="bg-slate-800 border-slate-700">
+      <Card>
         <CardHeader>
-          <CardTitle className="text-white">Your Profile</CardTitle>
+          <CardTitle>Your Profile</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="flex items-center gap-4">
             <Avatar className="h-16 w-16">
               <AvatarImage src={avatarUrl} />
-              <AvatarFallback className="bg-slate-700 text-xl">
+              <AvatarFallback className="bg-muted text-xl">
                 {name?.[0]?.toUpperCase() || email?.[0]?.toUpperCase()}
               </AvatarFallback>
             </Avatar>
             <div>
-              <p className="text-white font-medium">{name || 'No name set'}</p>
-              <p className="text-slate-400 text-sm">{email}</p>
+              <p className="font-medium">{name || 'No name set'}</p>
+              <p className="text-muted-foreground text-sm">{email}</p>
             </div>
           </div>
 
@@ -75,7 +75,6 @@ export default function ProfilePage() {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="bg-slate-900 border-slate-700"
             />
           </div>
 
@@ -85,12 +84,12 @@ export default function ProfilePage() {
               id="email"
               value={email}
               disabled
-              className="bg-slate-900 border-slate-700 opacity-50"
+              className="opacity-50"
             />
-            <p className="text-xs text-slate-500">Email is managed by Google authentication</p>
+            <p className="text-xs text-muted-foreground">Email is managed by Google authentication</p>
           </div>
 
-          <Button onClick={handleSave} disabled={loading} className="bg-blue-600 hover:bg-blue-700">
+          <Button onClick={handleSave} disabled={loading}>
             {loading ? 'Saving...' : saved ? 'Saved!' : 'Save Changes'}
           </Button>
         </CardContent>

@@ -8,13 +8,13 @@ type Instance = Database['molthome']['Tables']['instances']['Row']
 export function InstanceCard({ instance }: { instance: Instance }) {
   return (
     <Link href={`/dashboard/${instance.id}`}>
-      <Card className="bg-slate-800 border-slate-700 hover:border-slate-600 transition cursor-pointer">
+      <Card className="hover:border-border/80 transition cursor-pointer">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-white">{instance.name}</CardTitle>
+            <CardTitle>{instance.name}</CardTitle>
             <InstanceStatus status={instance.status} />
           </div>
-          <CardDescription className="text-slate-400">
+          <CardDescription>
             {instance.external_ip || 'No IP assigned'} • {instance.zone}
           </CardDescription>
         </CardHeader>

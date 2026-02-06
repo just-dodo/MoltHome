@@ -34,15 +34,15 @@ export function AddChannelModal({ instanceId, open, onClose }: AddChannelModalPr
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="bg-slate-800 border-slate-700">
+      <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-white">Add Channel</DialogTitle>
+          <DialogTitle>Add Channel</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label>Channel Type</Label>
             <Select value={type} onValueChange={(v) => setType(v as 'telegram' | 'discord')}>
-              <SelectTrigger className="bg-slate-900 border-slate-700">
+              <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -59,10 +59,9 @@ export function AddChannelModal({ instanceId, open, onClose }: AddChannelModalPr
               placeholder={type === 'telegram' ? '123456:ABC...' : 'Discord bot token'}
               value={botToken}
               onChange={(e) => setBotToken(e.target.value)}
-              className="bg-slate-900 border-slate-700"
               required
             />
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-muted-foreground">
               {type === 'telegram'
                 ? 'Get this from @BotFather on Telegram'
                 : 'Get this from Discord Developer Portal'}
@@ -73,7 +72,7 @@ export function AddChannelModal({ instanceId, open, onClose }: AddChannelModalPr
             <Button type="button" variant="outline" onClick={onClose}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isPending} className="bg-blue-600 hover:bg-blue-700">
+            <Button type="submit" disabled={isPending}>
               {isPending ? 'Adding...' : 'Add Channel'}
             </Button>
           </div>

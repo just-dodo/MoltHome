@@ -43,13 +43,13 @@ export default function CreateInstancePage() {
     <div>
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold mb-2">Create Your First Instance</h1>
-        <p className="text-slate-400">Configure your OpenClaw Gateway</p>
+        <p className="text-muted-foreground">Configure your OpenClaw Gateway</p>
       </div>
 
-      <Card className="bg-slate-800 border-slate-700">
+      <Card>
         <CardHeader>
-          <CardTitle className="text-white">Instance Configuration</CardTitle>
-          <CardDescription className="text-slate-400">
+          <CardTitle>Instance Configuration</CardTitle>
+          <CardDescription>
             Set up your gateway settings
           </CardDescription>
         </CardHeader>
@@ -62,7 +62,6 @@ export default function CreateInstancePage() {
                 placeholder="My Gateway"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="bg-slate-900 border-slate-700"
                 required
               />
             </div>
@@ -70,7 +69,7 @@ export default function CreateInstancePage() {
             <div className="space-y-2">
               <Label htmlFor="zone">Region</Label>
               <Select value={formData.zone} onValueChange={(v) => setFormData({ ...formData, zone: v })}>
-                <SelectTrigger className="bg-slate-900 border-slate-700">
+                <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -90,13 +89,12 @@ export default function CreateInstancePage() {
                 placeholder="sk-ant-..."
                 value={formData.anthropicKey}
                 onChange={(e) => setFormData({ ...formData, anthropicKey: e.target.value })}
-                className="bg-slate-900 border-slate-700"
                 required
               />
-              <p className="text-xs text-slate-500">Your key is encrypted and stored securely</p>
+              <p className="text-xs text-muted-foreground">Your key is encrypted and stored securely</p>
             </div>
 
-            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700" disabled={loading}>
+            <Button type="submit" className="w-full" disabled={loading}>
               {loading ? 'Creating...' : 'Deploy Instance'}
             </Button>
           </form>

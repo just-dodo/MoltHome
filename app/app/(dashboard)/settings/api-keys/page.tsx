@@ -88,13 +88,13 @@ export default function ApiKeysPage() {
     <div className="max-w-2xl">
       <div className="mb-8">
         <h1 className="text-2xl font-bold">API Keys</h1>
-        <p className="text-slate-400">Manage your AI provider API keys</p>
+        <p className="text-muted-foreground">Manage your AI provider API keys</p>
       </div>
 
-      <Card className="bg-slate-800 border-slate-700 mb-6">
+      <Card className="mb-6">
         <CardHeader>
-          <CardTitle className="text-white">Add New Key</CardTitle>
-          <CardDescription className="text-slate-400">
+          <CardTitle>Add New Key</CardTitle>
+          <CardDescription>
             Add API keys for Anthropic, OpenAI, or Google Gemini
           </CardDescription>
         </CardHeader>
@@ -106,13 +106,12 @@ export default function ApiKeysPage() {
                 placeholder="My API Key"
                 value={newKeyName}
                 onChange={(e) => setNewKeyName(e.target.value)}
-                className="bg-slate-900 border-slate-700"
               />
             </div>
             <div className="space-y-2">
               <Label>Provider</Label>
               <Select value={newKeyType} onValueChange={(v) => setNewKeyType(v as ApiKeyType)}>
-                <SelectTrigger className="bg-slate-900 border-slate-700">
+                <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -130,33 +129,32 @@ export default function ApiKeysPage() {
               placeholder={providerInfo[newKeyType].placeholder}
               value={newKeyValue}
               onChange={(e) => setNewKeyValue(e.target.value)}
-              className="bg-slate-900 border-slate-700"
             />
           </div>
-          <Button onClick={handleAdd} disabled={loading} className="bg-blue-600 hover:bg-blue-700">
+          <Button onClick={handleAdd} disabled={loading}>
             {loading ? 'Adding...' : 'Add Key'}
           </Button>
         </CardContent>
       </Card>
 
-      <Card className="bg-slate-800 border-slate-700">
+      <Card>
         <CardHeader>
-          <CardTitle className="text-white">Saved Keys</CardTitle>
+          <CardTitle>Saved Keys</CardTitle>
         </CardHeader>
         <CardContent>
           {keys.length === 0 ? (
-            <p className="text-slate-500 text-center py-4">No API keys saved</p>
+            <p className="text-muted-foreground text-center py-4">No API keys saved</p>
           ) : (
             <div className="space-y-3">
               {keys.map((key) => (
-                <div key={key.id} className="flex items-center justify-between p-3 bg-slate-900 rounded-lg">
+                <div key={key.id} className="flex items-center justify-between p-3 bg-muted rounded-lg">
                   <div className="flex items-center gap-3">
                     <Badge className={providerInfo[key.type].color}>
                       {providerInfo[key.type].label}
                     </Badge>
                     <div>
-                      <p className="text-white">{key.name}</p>
-                      <p className="text-slate-400 text-xs">Added {new Date(key.created_at).toLocaleDateString()}</p>
+                      <p>{key.name}</p>
+                      <p className="text-muted-foreground text-xs">Added {new Date(key.created_at).toLocaleDateString()}</p>
                     </div>
                   </div>
                   <Button variant="destructive" size="sm" onClick={() => handleDelete(key.id)}>

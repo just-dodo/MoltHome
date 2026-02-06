@@ -29,7 +29,7 @@ export default async function ChannelsPage({ params }: { params: Promise<{ id: s
     <div>
       <div className="mb-6">
         <h1 className="text-2xl font-bold">{instance.name} - Channels</h1>
-        <p className="text-slate-400">Manage connected channels</p>
+        <p className="text-muted-foreground">Manage connected channels</p>
       </div>
       <ChannelList instanceId={id} initialChannels={channels || []} />
     </div>

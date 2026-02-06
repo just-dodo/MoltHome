@@ -45,35 +45,35 @@ export function PairedDevices({ instanceId }: { instanceId: string }) {
   }
 
   if (loading) {
-    return <Card className="bg-slate-800 border-slate-700 animate-pulse h-32" />
+    return <Card className="animate-pulse h-32" />
   }
 
   return (
-    <Card className="bg-slate-800 border-slate-700">
+    <Card>
       <CardHeader>
-        <CardTitle className="text-white">Paired Devices</CardTitle>
-        <CardDescription className="text-slate-400">
+        <CardTitle>Paired Devices</CardTitle>
+        <CardDescription>
           Devices connected to this gateway
         </CardDescription>
       </CardHeader>
       <CardContent>
         {devices.length === 0 ? (
-          <p className="text-slate-500 text-center py-4">No paired devices</p>
+          <p className="text-muted-foreground text-center py-4">No paired devices</p>
         ) : (
           <div className="space-y-3">
             {devices.map((device) => (
-              <div key={device.device_id} className="flex items-center justify-between p-3 bg-slate-900 rounded-lg">
+              <div key={device.device_id} className="flex items-center justify-between p-3 bg-muted rounded-lg">
                 <div className="flex items-center gap-3">
                   <Badge className="bg-green-600">Active</Badge>
                   <div>
-                    <p className="text-white font-medium">{device.platform}</p>
-                    <p className="text-slate-400 text-sm">Paired {new Date(device.paired_at).toLocaleDateString()}</p>
+                    <p className="font-medium">{device.platform}</p>
+                    <p className="text-muted-foreground text-sm">Paired {new Date(device.paired_at).toLocaleDateString()}</p>
                   </div>
                 </div>
                 <Button
                   size="sm"
                   variant="outline"
-                  className="text-red-400 border-red-400 hover:bg-red-400/10"
+                  className="text-destructive border-destructive hover:bg-destructive/10"
                   onClick={() => handleRevoke(device.device_id)}
                 >
                   Revoke

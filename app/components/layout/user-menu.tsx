@@ -33,17 +33,17 @@ export function UserMenu() {
         <button className="flex items-center gap-2">
           <Avatar className="h-8 w-8">
             <AvatarImage src={user?.user_metadata?.avatar_url} />
-            <AvatarFallback className="bg-slate-700 text-white">
+            <AvatarFallback className="bg-muted">
               {user?.email?.[0]?.toUpperCase() ?? '?'}
             </AvatarFallback>
           </Avatar>
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
-        <DropdownMenuItem className="text-slate-400 text-sm">
+        <DropdownMenuItem className="text-muted-foreground text-sm">
           {user?.email}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={handleLogout} className="text-red-400">
+        <DropdownMenuItem onClick={handleLogout} className="text-destructive">
           Sign out
         </DropdownMenuItem>
       </DropdownMenuContent>

@@ -28,13 +28,13 @@ export default function NewInstancePage() {
     <div className="max-w-2xl">
       <div className="mb-8">
         <h1 className="text-2xl font-bold">Create New Instance</h1>
-        <p className="text-slate-400">Deploy a new OpenClaw Gateway instance</p>
+        <p className="text-muted-foreground">Deploy a new OpenClaw Gateway instance</p>
       </div>
 
-      <Card className="bg-slate-800 border-slate-700">
+      <Card>
         <CardHeader>
-          <CardTitle className="text-white">Instance Configuration</CardTitle>
-          <CardDescription className="text-slate-400">
+          <CardTitle>Instance Configuration</CardTitle>
+          <CardDescription>
             Configure your OpenClaw Gateway settings
           </CardDescription>
         </CardHeader>
@@ -47,7 +47,6 @@ export default function NewInstancePage() {
                 placeholder="My Gateway"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="bg-slate-900 border-slate-700"
                 required
               />
             </div>
@@ -58,7 +57,7 @@ export default function NewInstancePage() {
                 value={formData.zone}
                 onValueChange={(value) => setFormData({ ...formData, zone: value })}
               >
-                <SelectTrigger className="bg-slate-900 border-slate-700">
+                <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -78,24 +77,21 @@ export default function NewInstancePage() {
                 placeholder="sk-ant-..."
                 value={formData.anthropicKey}
                 onChange={(e) => setFormData({ ...formData, anthropicKey: e.target.value })}
-                className="bg-slate-900 border-slate-700"
                 required
               />
-              <p className="text-xs text-slate-500">Your API key is encrypted and stored securely</p>
+              <p className="text-xs text-muted-foreground">Your API key is encrypted and stored securely</p>
             </div>
 
             <div className="flex gap-4">
               <Button
                 type="button"
                 variant="outline"
-                className="border-slate-600"
                 onClick={() => router.back()}
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
-                className="bg-blue-600 hover:bg-blue-700"
                 disabled={loading}
               >
                 {loading ? 'Creating...' : 'Create Instance'}

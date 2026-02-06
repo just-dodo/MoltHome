@@ -41,30 +41,30 @@ export default function PricingPage() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Simple, Transparent Pricing</h1>
-          <p className="text-xl text-slate-400">Choose the plan that fits your needs</p>
+          <p className="text-xl text-muted-foreground">Choose the plan that fits your needs</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {plans.map((plan) => (
             <Card
               key={plan.name}
-              className={`bg-slate-800 border-slate-700 ${plan.popular ? 'ring-2 ring-blue-500' : ''}`}
+              className={plan.popular ? 'ring-2 ring-primary' : ''}
             >
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-2xl text-white">{plan.name}</CardTitle>
-                  {plan.popular && <Badge className="bg-blue-600">Popular</Badge>}
+                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
+                  {plan.popular && <Badge>Popular</Badge>}
                 </div>
-                <CardDescription className="text-slate-400">{plan.description}</CardDescription>
+                <CardDescription>{plan.description}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-white">{plan.price}</span>
-                  <span className="text-slate-400">{plan.period}</span>
+                  <span className="text-4xl font-bold">{plan.price}</span>
+                  <span className="text-muted-foreground">{plan.period}</span>
                 </div>
                 <ul className="space-y-3">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-slate-300">
+                    <li key={feature} className="flex items-center gap-2 text-foreground">
                       <span className="text-green-500">✓</span>
                       {feature}
                     </li>
@@ -74,7 +74,8 @@ export default function PricingPage() {
               <CardFooter>
                 <Link href="/login" className="w-full">
                   <Button
-                    className={`w-full ${plan.popular ? 'bg-blue-600 hover:bg-blue-700' : 'bg-slate-700 hover:bg-slate-600'}`}
+                    className="w-full"
+                    variant={plan.popular ? "default" : "secondary"}
                     size="lg"
                   >
                     {plan.cta}

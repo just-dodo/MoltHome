@@ -38,7 +38,7 @@ export function InstanceDetail({ instance: initialInstance }: { instance: Instan
             {current.name}
             <InstanceStatus status={current.status} />
           </h1>
-          <p className="text-slate-400">{current.external_ip || 'No IP assigned'}</p>
+          <p className="text-muted-foreground">{current.external_ip || 'No IP assigned'}</p>
         </div>
         <div className="flex gap-2">
           {current.status === 'stopped' && (
@@ -63,7 +63,7 @@ export function InstanceDetail({ instance: initialInstance }: { instance: Instan
       </div>
 
       <Tabs defaultValue="overview" className="space-y-4">
-        <TabsList className="bg-slate-800">
+        <TabsList>
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="channels">Channels</TabsTrigger>
           <TabsTrigger value="pairing">Pairing</TabsTrigger>
@@ -72,10 +72,10 @@ export function InstanceDetail({ instance: initialInstance }: { instance: Instan
 
         <TabsContent value="overview">
           <div className="grid gap-4 md:grid-cols-2">
-            <Card className="bg-slate-800 border-slate-700">
+            <Card>
               <CardHeader>
-                <CardTitle className="text-white">Gateway Token</CardTitle>
-                <CardDescription className="text-slate-400">
+                <CardTitle>Gateway Token</CardTitle>
+                <CardDescription>
                   Use this token to connect clients
                 </CardDescription>
               </CardHeader>
@@ -84,22 +84,22 @@ export function InstanceDetail({ instance: initialInstance }: { instance: Instan
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-800 border-slate-700">
+            <Card>
               <CardHeader>
-                <CardTitle className="text-white">Instance Details</CardTitle>
+                <CardTitle>Instance Details</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Zone</span>
-                  <span className="text-white">{current.zone}</span>
+                  <span className="text-muted-foreground">Zone</span>
+                  <span>{current.zone}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Machine Type</span>
-                  <span className="text-white">{current.machine_type}</span>
+                  <span className="text-muted-foreground">Machine Type</span>
+                  <span>{current.machine_type}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Created</span>
-                  <span className="text-white">{new Date(current.created_at).toLocaleDateString()}</span>
+                  <span className="text-muted-foreground">Created</span>
+                  <span>{new Date(current.created_at).toLocaleDateString()}</span>
                 </div>
               </CardContent>
             </Card>
@@ -107,10 +107,10 @@ export function InstanceDetail({ instance: initialInstance }: { instance: Instan
         </TabsContent>
 
         <TabsContent value="channels">
-          <Card className="bg-slate-800 border-slate-700">
+          <Card>
             <CardHeader>
-              <CardTitle className="text-white">Channels</CardTitle>
-              <CardDescription className="text-slate-400">
+              <CardTitle>Channels</CardTitle>
+              <CardDescription>
                 Manage connected channels
               </CardDescription>
             </CardHeader>
@@ -123,10 +123,10 @@ export function InstanceDetail({ instance: initialInstance }: { instance: Instan
         </TabsContent>
 
         <TabsContent value="pairing">
-          <Card className="bg-slate-800 border-slate-700">
+          <Card>
             <CardHeader>
-              <CardTitle className="text-white">Device Pairing</CardTitle>
-              <CardDescription className="text-slate-400">
+              <CardTitle>Device Pairing</CardTitle>
+              <CardDescription>
                 Approve or reject pairing requests
               </CardDescription>
             </CardHeader>
@@ -139,12 +139,12 @@ export function InstanceDetail({ instance: initialInstance }: { instance: Instan
         </TabsContent>
 
         <TabsContent value="logs">
-          <Card className="bg-slate-800 border-slate-700">
+          <Card>
             <CardHeader>
-              <CardTitle className="text-white">Deployment Logs</CardTitle>
+              <CardTitle>Deployment Logs</CardTitle>
             </CardHeader>
             <CardContent>
-              <pre className="bg-slate-900 p-4 rounded-lg text-xs overflow-auto max-h-96">
+              <pre className="bg-muted p-4 rounded-lg text-xs overflow-auto max-h-96">
                 {current.deployment_log
                   ? JSON.stringify(current.deployment_log, null, 2)
                   : 'No logs available'}

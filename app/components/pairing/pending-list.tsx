@@ -33,27 +33,27 @@ export function PendingList({ instanceId }: { instanceId: string }) {
   }
 
   if (loading) {
-    return <Card className="bg-slate-800 border-slate-700 animate-pulse h-32" />
+    return <Card className="animate-pulse h-32" />
   }
 
   return (
-    <Card className="bg-slate-800 border-slate-700">
+    <Card>
       <CardHeader>
-        <CardTitle className="text-white">Pending Requests</CardTitle>
-        <CardDescription className="text-slate-400">
+        <CardTitle>Pending Requests</CardTitle>
+        <CardDescription>
           Devices waiting for approval
         </CardDescription>
       </CardHeader>
       <CardContent>
         {pending.length === 0 ? (
-          <p className="text-slate-500 text-center py-4">No pending requests</p>
+          <p className="text-muted-foreground text-center py-4">No pending requests</p>
         ) : (
           <div className="space-y-3">
             {pending.map((req) => (
-              <div key={req.request_id} className="flex items-center justify-between p-3 bg-slate-900 rounded-lg">
+              <div key={req.request_id} className="flex items-center justify-between p-3 bg-muted rounded-lg">
                 <div>
-                  <p className="text-white font-medium">{req.platform}</p>
-                  <p className="text-slate-400 text-sm">{new Date(req.created_at).toLocaleString()}</p>
+                  <p className="font-medium">{req.platform}</p>
+                  <p className="text-muted-foreground text-sm">{new Date(req.created_at).toLocaleString()}</p>
                 </div>
                 <div className="flex gap-2">
                   <Button size="sm" className="bg-green-600 hover:bg-green-700">

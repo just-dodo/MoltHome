@@ -26,15 +26,15 @@ export function ChannelList({ instanceId, initialChannels }: { instanceId: strin
     <>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">Connected Channels</h2>
-        <Button onClick={() => setShowAddModal(true)} className="bg-blue-600 hover:bg-blue-700">
+        <Button onClick={() => setShowAddModal(true)}>
           + Add Channel
         </Button>
       </div>
 
       {currentChannels.length === 0 ? (
-        <Card className="bg-slate-800 border-slate-700">
+        <Card>
           <CardContent className="py-8 text-center">
-            <p className="text-slate-400">No channels connected yet</p>
+            <p className="text-muted-foreground">No channels connected yet</p>
             <Button className="mt-4" onClick={() => setShowAddModal(true)}>
               Add Your First Channel
             </Button>
@@ -43,12 +43,12 @@ export function ChannelList({ instanceId, initialChannels }: { instanceId: strin
       ) : (
         <div className="space-y-3">
           {currentChannels.map((channel) => (
-            <Card key={channel.id} className="bg-slate-800 border-slate-700">
+            <Card key={channel.id}>
               <CardHeader className="flex flex-row items-center justify-between py-4">
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{channelIcons[channel.type] || '📡'}</span>
                   <div>
-                    <CardTitle className="text-white capitalize">{channel.type}</CardTitle>
+                    <CardTitle className="capitalize">{channel.type}</CardTitle>
                     <Badge variant={channel.status === 'active' ? 'default' : 'secondary'} className={channel.status === 'active' ? 'bg-green-600' : ''}>
                       {channel.status}
                     </Badge>

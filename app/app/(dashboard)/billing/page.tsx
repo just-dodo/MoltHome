@@ -15,28 +15,28 @@ export default function BillingPage() {
     <div>
       <div className="mb-8">
         <h1 className="text-2xl font-bold">Billing</h1>
-        <p className="text-slate-400">Manage your subscription and billing</p>
+        <p className="text-muted-foreground">Manage your subscription and billing</p>
       </div>
 
       <div className="grid gap-6 max-w-2xl">
-        <Card className="bg-slate-800 border-slate-700">
+        <Card>
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle className="text-white">Current Plan</CardTitle>
-              <Badge className="bg-blue-600 capitalize">{subscription.tier}</Badge>
+              <CardTitle>Current Plan</CardTitle>
+              <Badge className="capitalize">{subscription.tier}</Badge>
             </div>
-            <CardDescription className="text-slate-400">
+            <CardDescription>
               Your subscription is {subscription.status}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-slate-400 text-sm">Next billing date</p>
-                <p className="text-white">{subscription.nextBillingDate}</p>
+                <p className="text-muted-foreground text-sm">Next billing date</p>
+                <p>{subscription.nextBillingDate}</p>
               </div>
               <Link href="/billing/plans">
-                <Button variant="outline" className="border-slate-600">
+                <Button variant="outline">
                   Change Plan
                 </Button>
               </Link>
@@ -45,10 +45,10 @@ export default function BillingPage() {
         </Card>
 
         <Link href="/billing/invoices">
-          <Card className="bg-slate-800 border-slate-700 hover:border-slate-600 transition cursor-pointer">
+          <Card className="hover:border-border/80 transition cursor-pointer">
             <CardHeader>
-              <CardTitle className="text-white">Invoice History</CardTitle>
-              <CardDescription className="text-slate-400">
+              <CardTitle>Invoice History</CardTitle>
+              <CardDescription>
                 View and download past invoices
               </CardDescription>
             </CardHeader>

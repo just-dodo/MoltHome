@@ -3,9 +3,9 @@ import { Badge } from '@/components/ui/badge'
 const statusConfig = {
   provisioning: { label: 'Provisioning', className: 'bg-yellow-600' },
   running: { label: 'Running', className: 'bg-green-600' },
-  stopped: { label: 'Stopped', className: 'bg-slate-600' },
-  error: { label: 'Error', className: 'bg-red-600' },
-  deleted: { label: 'Deleted', className: 'bg-slate-700' },
+  stopped: { label: 'Stopped', className: 'bg-muted-foreground' },
+  error: { label: 'Error', className: 'bg-destructive' },
+  deleted: { label: 'Deleted', className: 'bg-muted' },
 }
 
 interface InstanceStatusProps {

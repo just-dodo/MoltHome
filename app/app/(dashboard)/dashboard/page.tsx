@@ -21,21 +21,21 @@ export default async function DashboardPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold">Instances</h1>
-          <p className="text-slate-400">Manage your OpenClaw Gateway instances</p>
+          <p className="text-muted-foreground">Manage your OpenClaw Gateway instances</p>
         </div>
         <Link href="/dashboard/new">
-          <Button className="bg-blue-600 hover:bg-blue-700">+ New Instance</Button>
+          <Button>+ New Instance</Button>
         </Link>
       </div>
 
       {!instances?.length ? (
-        <Card className="bg-slate-800 border-slate-700">
+        <Card>
           <CardContent className="py-12 text-center">
             <div className="text-4xl mb-4">🚀</div>
             <h3 className="text-xl font-semibold mb-2">No instances yet</h3>
-            <p className="text-slate-400 mb-4">Deploy your first OpenClaw Gateway instance</p>
+            <p className="text-muted-foreground mb-4">Deploy your first OpenClaw Gateway instance</p>
             <Link href="/dashboard/new">
-              <Button className="bg-blue-600 hover:bg-blue-700">Create Instance</Button>
+              <Button>Create Instance</Button>
             </Link>
           </CardContent>
         </Card>

@@ -14,23 +14,23 @@ export default function InvoicesPage() {
     <div>
       <div className="mb-8">
         <h1 className="text-2xl font-bold">Invoice History</h1>
-        <p className="text-slate-400">View and download past invoices</p>
+        <p className="text-muted-foreground">View and download past invoices</p>
       </div>
 
-      <Card className="bg-slate-800 border-slate-700">
+      <Card>
         <CardHeader>
-          <CardTitle className="text-white">Invoices</CardTitle>
+          <CardTitle>Invoices</CardTitle>
         </CardHeader>
         <CardContent>
           {invoices.length === 0 ? (
-            <p className="text-slate-500 text-center py-8">No invoices yet</p>
+            <p className="text-muted-foreground text-center py-8">No invoices yet</p>
           ) : (
             <div className="space-y-3">
               {invoices.map((invoice) => (
-                <div key={invoice.id} className="flex items-center justify-between p-3 bg-slate-900 rounded-lg">
+                <div key={invoice.id} className="flex items-center justify-between p-3 bg-muted rounded-lg">
                   <div>
-                    <p className="text-white">{invoice.date}</p>
-                    <p className="text-slate-400 text-sm">{invoice.amount}</p>
+                    <p>{invoice.date}</p>
+                    <p className="text-muted-foreground text-sm">{invoice.amount}</p>
                   </div>
                   <Badge className={invoice.status === 'paid' ? 'bg-green-600' : 'bg-yellow-600'}>
                     {invoice.status}

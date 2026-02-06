@@ -38,30 +38,30 @@ export default async function PlansPage() {
     <div>
       <div className="mb-8">
         <h1 className="text-2xl font-bold">Change Plan</h1>
-        <p className="text-slate-400">Upgrade or change your subscription</p>
+        <p className="text-muted-foreground">Upgrade or change your subscription</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
         {plans.map((plan) => (
-          <Card key={plan.tier} className={`bg-slate-800 border-slate-700 ${plan.popular ? 'ring-2 ring-blue-500' : ''}`}>
+          <Card key={plan.tier} className={plan.popular ? 'ring-2 ring-primary' : ''}>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="text-white">{plan.name}</CardTitle>
+                <CardTitle>{plan.name}</CardTitle>
                 <div className="flex gap-2">
-                  {plan.popular && <Badge className="bg-blue-600">Popular</Badge>}
+                  {plan.popular && <Badge>Popular</Badge>}
                   {currentTier === plan.tier && <Badge className="bg-green-600">Current</Badge>}
                 </div>
               </div>
-              <CardDescription className="text-slate-400">{plan.description}</CardDescription>
+              <CardDescription>{plan.description}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="mb-4">
-                <span className="text-3xl font-bold text-white">{plan.price}</span>
-                <span className="text-slate-400">/month</span>
+                <span className="text-3xl font-bold">{plan.price}</span>
+                <span className="text-muted-foreground">/month</span>
               </div>
               <ul className="space-y-2 mb-6">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-2 text-slate-300">
+                  <li key={feature} className="flex items-center gap-2 text-foreground">
                     <span className="text-green-500">✓</span> {feature}
                   </li>
                 ))}
@@ -71,7 +71,7 @@ export default async function PlansPage() {
                   tier={plan.tier}
                   userId={user!.id}
                   userEmail={user!.email!}
-                  className="w-full bg-blue-600 hover:bg-blue-700"
+                  className="w-full"
                 >
                   {currentTier === 'starter' && plan.tier === 'pro' ? 'Upgrade to Pro' : 'Switch Plan'}
                 </CheckoutButton>

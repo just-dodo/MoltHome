@@ -39,10 +39,10 @@ export function PairingManager({ instanceId }: { instanceId: string }) {
   return (
     <div className="space-y-6">
       {/* Manual Pairing Approval */}
-      <Card className="bg-slate-800 border-slate-700">
+      <Card>
         <CardHeader>
-          <CardTitle className="text-white">Approve Pairing Code</CardTitle>
-          <CardDescription className="text-slate-400">
+          <CardTitle>Approve Pairing Code</CardTitle>
+          <CardDescription>
             Enter a pairing code to approve a device connection
           </CardDescription>
         </CardHeader>
@@ -55,7 +55,7 @@ export function PairingManager({ instanceId }: { instanceId: string }) {
                 placeholder="Enter pairing code (e.g., ABC123)"
                 value={pairingCode}
                 onChange={(e) => setPairingCode(e.target.value.toUpperCase())}
-                className="bg-slate-900 border-slate-700 font-mono"
+                className="font-mono"
                 maxLength={8}
               />
             </div>

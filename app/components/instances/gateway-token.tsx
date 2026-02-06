@@ -19,7 +19,7 @@ export function GatewayToken({ token }: { token: string }) {
       <Input
         value={visible ? token : '••••••••••••••••'}
         readOnly
-        className="bg-slate-900 border-slate-700 font-mono text-sm"
+        className="font-mono text-sm"
       />
       <Button variant="outline" size="sm" onClick={() => setVisible(!visible)}>
         {visible ? 'Hide' : 'Show'}

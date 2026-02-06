@@ -52,25 +52,25 @@ function DeployingContent() {
         <h1 className="text-3xl font-bold mb-2">
           {status === 'success' ? 'Deployment Complete!' : 'Deploying Your Instance'}
         </h1>
-        <p className="text-slate-400">
+        <p className="text-muted-foreground">
           {status === 'success' ? 'Your gateway is ready' : 'This may take a few minutes...'}
         </p>
       </div>
 
-      <Card className="bg-slate-800 border-slate-700">
+      <Card>
         <CardContent className="pt-6">
           <div className="space-y-4">
             {deploymentSteps.map((step, index) => (
               <div key={step.id} className="flex items-center gap-4">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                   index < currentStep ? 'bg-green-600' :
-                  index === currentStep ? 'bg-blue-600' : 'bg-slate-700'
+                  index === currentStep ? 'bg-primary' : 'bg-muted'
                 }`}>
                   {index < currentStep ? '✓' : index === currentStep ? (
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   ) : (index + 1)}
                 </div>
-                <span className={index <= currentStep ? 'text-white' : 'text-slate-500'}>
+                <span className={index <= currentStep ? '' : 'text-muted-foreground'}>
                   {step.label}
                 </span>
               </div>
@@ -86,8 +86,8 @@ export default function DeployingPage() {
   return (
     <Suspense fallback={
       <div className="space-y-4">
-        <Skeleton className="h-10 w-64 mx-auto bg-slate-700" />
-        <Skeleton className="h-64 w-full bg-slate-700" />
+        <Skeleton className="h-10 w-64 mx-auto bg-muted" />
+        <Skeleton className="h-64 w-full bg-muted" />
       </div>
     }>
       <DeployingContent />
