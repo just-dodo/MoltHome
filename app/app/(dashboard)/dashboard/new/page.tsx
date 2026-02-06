@@ -7,21 +7,46 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { useCreateInstance } from '@/hooks/use-instances'
+import { toast } from 'sonner'
+
+const aiProviders = [
+  { value: 'anthropic', label: 'Anthropic', placeholder: 'sk-ant-...' },
+  { value: 'openai', label: 'OpenAI', placeholder: 'sk-...' },
+  { value: 'gemini', label: 'Google Gemini', placeholder: 'AI...' },
+] as const
 
 export default function NewInstancePage() {
   const router = useRouter()
-  const [loading, setLoading] = useState(false)
+  const { mutate: createInstance, isPending } = useCreateInstance()
   const [formData, setFormData] = useState({
     name: '',
     zone: 'us-central1-a',
-    anthropicKey: '',
+    aiProvider: 'anthropic' as string,
+    aiApiKey: '',
   })
+
+  const currentProvider = aiProviders.find(p => p.value === formData.aiProvider) || aiProviders[0]
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setLoading(true)
-    // TODO: Call API to create instance
-    // router.push('/dashboard')
+    createInstance(
+      {
+        name: formData.name,
+        zone: formData.zone,
+        aiProvider: formData.aiProvider,
+        aiApiKey: formData.aiApiKey,
+      },
+      {
+        onSuccess: (data) => {
+          toast.success('Instance created successfully')
+          router.push(`/dashboard/${data.id}`)
+        },
+        onError: (error) => {
+          toast.error(error.message || 'Failed to create instance')
+        },
+      }
+    )
   }
 
   return (
@@ -70,13 +95,32 @@ export default function NewInstancePage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="anthropicKey">Anthropic API Key</Label>
+              <Label htmlFor="aiProvider">AI Provider</Label>
+              <Select
+                value={formData.aiProvider}
+                onValueChange={(value) => setFormData({ ...formData, aiProvider: value })}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {aiProviders.map((provider) => (
+                    <SelectItem key={provider.value} value={provider.value}>
+                      {provider.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="aiApiKey">{currentProvider.label} API Key</Label>
               <Input
-                id="anthropicKey"
+                id="aiApiKey"
                 type="password"
-                placeholder="sk-ant-..."
-                value={formData.anthropicKey}
-                onChange={(e) => setFormData({ ...formData, anthropicKey: e.target.value })}
+                placeholder={currentProvider.placeholder}
+                value={formData.aiApiKey}
+                onChange={(e) => setFormData({ ...formData, aiApiKey: e.target.value })}
                 required
               />
               <p className="text-xs text-muted-foreground">Your API key is encrypted and stored securely</p>
@@ -92,9 +136,9 @@ export default function NewInstancePage() {
               </Button>
               <Button
                 type="submit"
-                disabled={loading}
+                disabled={isPending}
               >
-                {loading ? 'Creating...' : 'Create Instance'}
+                {isPending ? 'Creating...' : 'Create Instance'}
               </Button>
             </div>
           </form>

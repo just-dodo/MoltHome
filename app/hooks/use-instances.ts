@@ -12,7 +12,7 @@ async function fetchInstances(): Promise<Instance[]> {
   return data
 }
 
-async function createInstance(input: { name: string; zone: string; anthropicKey: string }) {
+async function createInstance(input: { name: string; zone: string; aiProvider?: string; aiApiKey?: string; anthropicKey?: string }) {
   const res = await fetch('/api/instances', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
