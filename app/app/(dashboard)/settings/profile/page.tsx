@@ -34,7 +34,7 @@ export default function ProfilePage() {
     if (user) {
       await supabase
         .schema('molthome')
-        .from('users')
+        .from('profiles')
         .update({ name })
         .eq('id', user.id)
 

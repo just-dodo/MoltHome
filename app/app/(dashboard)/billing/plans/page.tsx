@@ -27,7 +27,7 @@ export default async function PlansPage() {
 
   const { data: profile } = await supabase
     .schema('molthome')
-    .from('users')
+    .from('profiles')
     .select('tier, subscription_status')
     .eq('id', user!.id)
     .single()

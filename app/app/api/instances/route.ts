@@ -11,10 +11,10 @@ export async function GET() {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // Ensure user exists in molthome.users
+  // Ensure user exists in molthome.profiles
   const { data: existingUser } = await supabase
     .schema('molthome')
-    .from('users')
+    .from('profiles')
     .select('id')
     .eq('id', user.id)
     .single()
@@ -22,7 +22,7 @@ export async function GET() {
   if (!existingUser) {
     await supabase
       .schema('molthome')
-      .from('users')
+      .from('profiles')
       .insert({
         id: user.id,
         email: user.email!,
@@ -54,10 +54,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // Ensure user exists in molthome.users (may not exist if they signed up before migration)
+  // Ensure user exists in molthome.profiles (may not exist if they signed up before migration)
   const { data: existingUser } = await supabase
     .schema('molthome')
-    .from('users')
+    .from('profiles')
     .select('id')
     .eq('id', user.id)
     .single()
@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
   if (!existingUser) {
     const { error: userError } = await supabase
       .schema('molthome')
-      .from('users')
+      .from('profiles')
       .insert({
         id: user.id,
         email: user.email!,

@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
         if (userId) {
           const tier = data.items[0]?.price?.id?.includes('pro') ? 'pro' : 'starter'
           await supabaseAdmin
-            .from('users')
+            .from('profiles')
             .update({
               paddle_customer_id: data.customer_id,
               paddle_subscription_id: data.id,
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
 
       case 'subscription.updated': {
         await supabaseAdmin
-          .from('users')
+          .from('profiles')
           .update({
             subscription_status: data.status === 'active' ? 'active' : 'paused',
           })
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
 
       case 'subscription.canceled': {
         await supabaseAdmin
-          .from('users')
+          .from('profiles')
           .update({ subscription_status: 'cancelled' })
           .eq('paddle_subscription_id', data.id)
         break

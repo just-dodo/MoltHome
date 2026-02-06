@@ -10,8 +10,8 @@ GRANT USAGE ON SCHEMA molthome TO authenticated, anon;
 -- Set search path to include molthome schema
 ALTER DATABASE postgres SET search_path TO molthome, public;
 
--- Users table
-CREATE TABLE molthome.users (
+-- Profiles table
+CREATE TABLE molthome.profiles (
   id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   email TEXT UNIQUE NOT NULL,
   name TEXT,
@@ -29,7 +29,7 @@ CREATE TABLE molthome.users (
 -- Instances table
 CREATE TABLE molthome.instances (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID REFERENCES molthome.users(id) ON DELETE CASCADE,
+  user_id UUID REFERENCES molthome.profiles(id) ON DELETE CASCADE,
   name TEXT NOT NULL,
   gcp_instance_name TEXT UNIQUE NOT NULL,
   zone TEXT NOT NULL DEFAULT 'us-central1-a',
@@ -57,7 +57,7 @@ CREATE TABLE molthome.channels (
 -- API Keys table (supports Anthropic, OpenAI, Gemini)
 CREATE TABLE molthome.api_keys (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID REFERENCES molthome.users(id) ON DELETE CASCADE,
+  user_id UUID REFERENCES molthome.profiles(id) ON DELETE CASCADE,
   name TEXT NOT NULL,
   type TEXT NOT NULL CHECK (type IN ('anthropic', 'openai', 'gemini')),
   encrypted_value TEXT NOT NULL,
@@ -65,24 +65,27 @@ CREATE TABLE molthome.api_keys (
 );
 
 -- Indexes
-CREATE INDEX idx_users_email ON molthome.users(email);
-CREATE INDEX idx_users_google_id ON molthome.users(google_id);
+CREATE INDEX idx_profiles_email ON molthome.profiles(email);
+CREATE INDEX idx_profiles_google_id ON molthome.profiles(google_id);
 CREATE INDEX idx_instances_user_id ON molthome.instances(user_id);
 CREATE INDEX idx_instances_status ON molthome.instances(status);
 CREATE INDEX idx_channels_instance_id ON molthome.channels(instance_id);
 CREATE INDEX idx_api_keys_user_id ON molthome.api_keys(user_id);
 
 -- Enable RLS on all tables
-ALTER TABLE molthome.users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE molthome.profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE molthome.instances ENABLE ROW LEVEL SECURITY;
 ALTER TABLE molthome.channels ENABLE ROW LEVEL SECURITY;
 ALTER TABLE molthome.api_keys ENABLE ROW LEVEL SECURITY;
 
 -- RLS Policies
-CREATE POLICY "Users can view own profile" ON molthome.users
+CREATE POLICY "Users can view own profile" ON molthome.profiles
   FOR SELECT USING (auth.uid() = id);
 
-CREATE POLICY "Users can update own profile" ON molthome.users
+CREATE POLICY "Users can insert own profile" ON molthome.profiles
+  FOR INSERT WITH CHECK (auth.uid() = id);
+
+CREATE POLICY "Users can update own profile" ON molthome.profiles
   FOR UPDATE USING (auth.uid() = id);
 
 CREATE POLICY "Users can manage own instances" ON molthome.instances
@@ -104,7 +107,7 @@ CREATE POLICY "Users can manage own API keys" ON molthome.api_keys
 CREATE OR REPLACE FUNCTION molthome.handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
-  INSERT INTO molthome.users (id, email, name, avatar_url, google_id)
+  INSERT INTO molthome.profiles (id, email, name, avatar_url, google_id)
   VALUES (
     NEW.id,
     NEW.email,
@@ -130,8 +133,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER users_updated_at
-  BEFORE UPDATE ON molthome.users
+CREATE TRIGGER profiles_updated_at
+  BEFORE UPDATE ON molthome.profiles
   FOR EACH ROW EXECUTE FUNCTION molthome.handle_updated_at();
 
 CREATE TRIGGER instances_updated_at

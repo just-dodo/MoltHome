@@ -18,7 +18,7 @@ async function fetchSubscription(): Promise<Subscription> {
 
   const { data } = await supabase
     .schema('molthome')
-    .from('users')
+    .from('profiles')
     .select('tier, subscription_status, paddle_customer_id, paddle_subscription_id')
     .eq('id', user.id)
     .single()
