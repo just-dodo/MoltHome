@@ -18,7 +18,7 @@ export function WaitlistInput() {
 
 
 
-    const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsLoading(true);
         if (!email) {
@@ -47,9 +47,9 @@ export function WaitlistInput() {
 
   return (
     <>
-      <div className="flex w-full max-w-sm items-center gap-2">
+      <form className="flex w-full max-w-sm items-center gap-2" onSubmit={handleSubmit}>
         <Input type="email" placeholder={t.waitlist.placeholder} value={email} onChange={(e) => setEmail(e.target.value)} />
-        <Button type="submit" variant="outline" onClick={handleSubmit}>
+        <Button type="submit" variant="outline">
           {isloading ? <Spinner /> : success ? <>
 
             <span className="text-green-700 flex items-center gap-2">
@@ -58,7 +58,7 @@ export function WaitlistInput() {
           </>
               : t.waitlist.submit}
         </Button>
-      </div>
+      </form>
         <p className="text-sm text-zinc-500">{t.waitlist.hint}</p>
         {error && <p className="text-red-500">{error}</p>}
     </>
