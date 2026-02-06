@@ -19,8 +19,8 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "ShortGuard",
-  description: "Block short-form videos on your iPhone.",
+  title: "MoltHome",
+  description: "Don't Buy Mac mini for $599, $30 is enough to give it a try.",
 };
 
 export default function RootLayout({

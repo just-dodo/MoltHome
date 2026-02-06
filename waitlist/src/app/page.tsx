@@ -12,18 +12,20 @@ export default function Home() {
           <div className="flex flex-row items-center gap-2">
             <Image src="/logo.png" alt="ShortGuard" width={50} height={50} />
             <h1 className="text-4xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-              ShortGuard
+              MoltHome
             </h1>
           </div>
           <h1 className="text-5xl font-semibold leading-16 tracking-tight text-black dark:text-zinc-50">
-            Your enemy is not YouTube,
-            <br />
-            it&apos;s Shorts.
+            Don't Buy Mac mini for  <s>
+              $599
+              </s>
+              <br />
+              $30/m is enough to give it a try.
           </h1>
           <p className="text-lg  text-zinc-600 dark:text-zinc-400">
-            Block short-form videos on your iPhone.
+            Run on Google Cloud Platform,
             <br />
-            Works on YouTube & Instagram.
+            your privacy is safe.
           </p>
           <WaitlistInput />
 
@@ -33,7 +35,7 @@ export default function Home() {
         )}
       />
         </div>
-        <Demo />
+        {/* <Demo /> */}
       </main>
     </div>
   );
