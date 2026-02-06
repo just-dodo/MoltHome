@@ -17,7 +17,7 @@ export default function Home() {
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <div className="flex flex-row items-center gap-2 justify-between w-full">
             <div className="flex flex-row items-center gap-2">
-              <Image src="/logo.png" alt="ShortGuard" width={50} height={50} />
+              <Image src="/logo.png" alt="ShortGuard" width={50} height={50} className="rounded-md" />
               <h1 className="text-4xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
                 MoltHome
               </h1>

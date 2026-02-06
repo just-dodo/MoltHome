@@ -29,15 +29,15 @@ export type Dictionary = {
 export const dictionaries: Record<Locale, Dictionary> = {
   en: {
     meta: {
-      description: "Don't Buy Mac mini for $599, $30/m is enough to give it a try.",
+      description: "Don't Buy Mac mini for $599, $30 is enough to give it a try.",
     },
     hero: {
       headingBefore: "Don't Buy ",
       headingPrice: "Mac mini for $599",
       headingAfter: "",
       headingLine2: "$30/m is enough to give it a try.",
-      subtitle1: "Run OpenClaw on Google Cloud Platform keeping your privacy safe.",
-      subtitle2: "",
+      subtitle1: "On Google Cloud Platform, your privacy is safe.",
+      subtitle2: "Meet OpenClaw, your personal assistant, for $30/m.",
     },
     waitlist: {
       placeholder: "Email",
@@ -54,15 +54,15 @@ export const dictionaries: Record<Locale, Dictionary> = {
   },
   ko: {
     meta: {
-      description: "Mac mini 89만원, 월 $30이면 충분합니다.",
+      description: "Mac mini 89만원, 5만원이면 충분합니다.",
     },
     hero: {
       headingBefore: "",
       headingPrice: "Mac mini 89만원?",
       headingAfter: "",
       headingLine2: "5만원이면 끝.",
-      subtitle1: "Google Cloud Platform에서 개인정보 걱정 없이 실행되는 개인 비서 OpenClaw를 만나보세요.",
-      subtitle2: "",
+      subtitle1: "Google Cloud Platform에서 개인정보 걱정 없이.",
+      subtitle2: "개인 비서 OpenClaw를 월 5만원에 만나보세요",
     },
     waitlist: {
       placeholder: "이메일",
