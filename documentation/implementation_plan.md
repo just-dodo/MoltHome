@@ -244,12 +244,12 @@ molthome/
 ### Week 1: Project Setup & Auth
 
 #### Day 1-2: Project Initialization
-- [ ] Initialize Next.js project with TypeScript
-- [ ] Configure Tailwind CSS
-- [ ] Install and configure shadcn/ui
-- [ ] Set up ESLint and Prettier
-- [ ] Create project structure (folders)
-- [ ] Set up Git repository
+- [x] Initialize Next.js project with TypeScript
+- [x] Configure Tailwind CSS
+- [x] Install and configure shadcn/ui
+- [x] Set up ESLint and Prettier
+- [x] Create project structure (folders)
+- [x] Set up Git repository
 
 ```bash
 # Commands
@@ -260,11 +260,11 @@ pnpm dlx shadcn-ui@latest init
 ```
 
 #### Day 3-4: Supabase Setup
-- [ ] Create Supabase project
-- [ ] Configure Google OAuth provider
-- [ ] Create database tables (initial migration)
-- [ ] Set up Row Level Security (RLS) policies
-- [ ] Create Supabase client utilities
+- [x] Create Supabase project
+- [x] Configure Google OAuth provider
+- [x] Create database tables (initial migration)
+- [x] Set up Row Level Security (RLS) policies
+- [x] Create Supabase client utilities
 - [ ] Test auth flow locally
 
 **Database Tables (Initial):**
@@ -300,11 +300,11 @@ CREATE POLICY "Users can update own profile" ON molthome.users
 ```
 
 #### Day 5: Auth Implementation
-- [ ] Create login page with Google OAuth button
-- [ ] Implement OAuth callback handler
-- [ ] Create auth middleware for protected routes
-- [ ] Implement logout functionality
-- [ ] Add user profile creation on first login
+- [x] Create login page with Google OAuth button
+- [x] Implement OAuth callback handler
+- [x] Create auth middleware for protected routes
+- [x] Implement logout functionality
+- [x] Add user profile creation on first login
 
 **Files to create:**
 - `app/(auth)/login/page.tsx`
@@ -317,11 +317,11 @@ CREATE POLICY "Users can update own profile" ON molthome.users
 ### Week 2: Layout & Basic Pages
 
 #### Day 6-7: Layout Components
-- [ ] Create marketing layout (header, footer)
-- [ ] Create dashboard layout (sidebar, header)
-- [ ] Create onboarding layout
-- [ ] Implement responsive navigation
-- [ ] Add user dropdown menu
+- [x] Create marketing layout (header, footer)
+- [x] Create dashboard layout (sidebar, header)
+- [x] Create onboarding layout
+- [x] Implement responsive navigation
+- [x] Add user dropdown menu
 
 **Components:**
 - `components/layout/marketing-header.tsx`
@@ -331,22 +331,22 @@ CREATE POLICY "Users can update own profile" ON molthome.users
 - `components/layout/user-menu.tsx`
 
 #### Day 8-9: Marketing Pages
-- [ ] Build landing page
-- [ ] Build pricing page
-- [ ] Add hero section with CTA
-- [ ] Add features section
-- [ ] Add pricing cards
+- [x] Build landing page
+- [x] Build pricing page
+- [x] Add hero section with CTA
+- [x] Add features section
+- [x] Add pricing cards
 
 **Pages:**
 - `app/(marketing)/page.tsx` - Landing
 - `app/(marketing)/pricing/page.tsx` - Pricing
 
 #### Day 10: Dashboard Shell
-- [ ] Create empty dashboard page
-- [ ] Create settings page shell
-- [ ] Create billing page shell
-- [ ] Add route protection (redirect if not authenticated)
-- [ ] Add subscription check (redirect to onboarding if no subscription)
+- [x] Create empty dashboard page
+- [x] Create settings page shell
+- [x] Create billing page shell
+- [x] Add route protection (redirect if not authenticated)
+- [x] Add subscription check (redirect to onboarding if no subscription)
 
 ---
 
@@ -355,11 +355,11 @@ CREATE POLICY "Users can update own profile" ON molthome.users
 ### Week 3: Paddle Integration & Onboarding
 
 #### Day 11-12: Paddle Setup
-- [ ] Create Paddle account and get API keys
-- [ ] Create products and prices in Paddle
-- [ ] Implement Paddle.js checkout
-- [ ] Create webhook endpoint for Paddle events
-- [ ] Handle subscription events (created, updated, cancelled)
+- [x] Create Paddle account and get API keys
+- [x] Create products and prices in Paddle
+- [x] Implement Paddle.js checkout
+- [x] Create webhook endpoint for Paddle events
+- [x] Handle subscription events (created, updated, cancelled)
 
 **Paddle Products:**
 | Product | Price ID | Amount |
@@ -380,21 +380,21 @@ CREATE POLICY "Users can update own profile" ON molthome.users
 - `app/api/webhooks/paddle/route.ts`
 
 #### Day 13-14: Onboarding Flow - Plan Selection
-- [ ] Create plan selection page
-- [ ] Display plan comparison cards
-- [ ] Integrate Paddle checkout overlay
-- [ ] Handle successful payment redirect
-- [ ] Update user subscription status
+- [x] Create plan selection page
+- [x] Display plan comparison cards
+- [x] Integrate Paddle checkout overlay
+- [x] Handle successful payment redirect
+- [x] Update user subscription status
 
 **Pages:**
 - `app/(onboarding)/plan/page.tsx`
 - `app/(onboarding)/checkout/page.tsx`
 
 #### Day 15: Onboarding Flow - Instance Creation
-- [ ] Create onboarding instance wizard
-- [ ] Reuse instance creation components
-- [ ] Store wizard state in Zustand
-- [ ] Redirect to deploying page on submit
+- [x] Create onboarding instance wizard
+- [x] Reuse instance creation components
+- [x] Store wizard state in Zustand
+- [x] Redirect to deploying page on submit
 
 **Pages:**
 - `app/(onboarding)/instance/page.tsx`
@@ -403,9 +403,9 @@ CREATE POLICY "Users can update own profile" ON molthome.users
 ### Week 4: GCP Integration
 
 #### Day 16-17: GCP Setup
-- [ ] Create GCP service account for MoltHome
-- [ ] Set up IAM permissions
-- [ ] Configure Secret Manager
+- [x] Create GCP service account for MoltHome
+- [x] Set up IAM permissions
+- [x] Configure Secret Manager
 - [ ] Set up Cloud Tasks queue
 - [ ] Test GCP API access
 
@@ -420,10 +420,10 @@ CREATE POLICY "Users can update own profile" ON molthome.users
 - `lib/gcp/tasks.ts`
 
 #### Day 18-19: Deployment Worker
-- [ ] Port Python deployment script to TypeScript (or keep Python)
+- [x] Port Python deployment script to TypeScript (or keep Python)
 - [ ] Create Cloud Tasks handler for deployments
-- [ ] Implement deployment status updates
-- [ ] Store deployment logs
+- [x] Implement deployment status updates
+- [x] Store deployment logs
 
 **Deployment Steps (in order):**
 1. Create VM instance
@@ -440,11 +440,11 @@ CREATE POLICY "Users can update own profile" ON molthome.users
 - `app/api/tasks/deploy/route.ts`
 
 #### Day 20: Deployment Progress UI
-- [ ] Create deployment progress page
-- [ ] Poll for deployment status
-- [ ] Show step-by-step progress
-- [ ] Handle deployment errors
-- [ ] Redirect to success on completion
+- [x] Create deployment progress page
+- [x] Poll for deployment status
+- [x] Show step-by-step progress
+- [x] Handle deployment errors
+- [x] Redirect to success on completion
 
 **Pages:**
 - `app/(onboarding)/deploying/page.tsx`
@@ -457,12 +457,12 @@ CREATE POLICY "Users can update own profile" ON molthome.users
 ### Week 5: Instance CRUD
 
 #### Day 21-22: Instance API
-- [ ] Create instances table migration
-- [ ] Implement list instances API
-- [ ] Implement create instance API
-- [ ] Implement get instance API
-- [ ] Implement delete instance API
-- [ ] Add RLS policies
+- [x] Create instances table migration
+- [x] Implement list instances API
+- [x] Implement create instance API
+- [x] Implement get instance API
+- [x] Implement delete instance API
+- [x] Add RLS policies
 
 **Database:**
 ```sql
@@ -506,11 +506,11 @@ CREATE POLICY "Users can update own instances" ON molthome.instances
 - `DELETE /api/instances/[id]` - Delete instance
 
 #### Day 23-24: Instance Actions
-- [ ] Implement start instance API
-- [ ] Implement stop instance API
-- [ ] Implement restart instance API
-- [ ] Implement logs API (fetch from VM)
-- [ ] Create React Query hooks
+- [x] Implement start instance API
+- [x] Implement stop instance API
+- [x] Implement restart instance API
+- [x] Implement logs API (fetch from VM)
+- [x] Create React Query hooks
 
 **API Routes:**
 - `POST /api/instances/[id]/start`
@@ -523,11 +523,11 @@ CREATE POLICY "Users can update own instances" ON molthome.instances
 - `hooks/use-instance.ts`
 
 #### Day 25: Dashboard UI
-- [ ] Create instance card component
-- [ ] Create instance list page
-- [ ] Add quick actions (start/stop)
-- [ ] Add status indicators
-- [ ] Add loading states
+- [x] Create instance card component
+- [x] Create instance list page
+- [x] Add quick actions (start/stop)
+- [x] Add status indicators
+- [x] Add loading states
 
 **Components:**
 - `components/instances/instance-card.tsx`
@@ -537,11 +537,11 @@ CREATE POLICY "Users can update own instances" ON molthome.instances
 ### Week 6: Instance Details & Channels
 
 #### Day 26-27: Instance Detail Page
-- [ ] Create instance detail layout with tabs
-- [ ] Implement overview tab
-- [ ] Show gateway token (masked)
+- [x] Create instance detail layout with tabs
+- [x] Implement overview tab
+- [x] Show gateway token (masked)
 - [ ] Show statistics (placeholder)
-- [ ] Add quick actions
+- [x] Add quick actions
 
 **Pages:**
 - `app/(dashboard)/dashboard/[id]/page.tsx`
@@ -552,11 +552,11 @@ CREATE POLICY "Users can update own instances" ON molthome.instances
 - `components/instances/instance-stats.tsx`
 
 #### Day 28-29: Channel Management
-- [ ] Create channels table
-- [ ] Implement add channel API
-- [ ] Implement remove channel API
-- [ ] Create channel list UI
-- [ ] Create add channel modal
+- [x] Create channels table
+- [x] Implement add channel API
+- [x] Implement remove channel API
+- [x] Create channel list UI
+- [x] Create add channel modal
 
 **Database:**
 ```sql
@@ -584,10 +584,10 @@ CREATE POLICY "Users can manage channels via instance" ON molthome.channels
 ```
 
 #### Day 30: Pairing Management
-- [ ] Implement pairing API (list pending, approve, reject)
-- [ ] Create pairing list UI
-- [ ] Create approve/reject modals
-- [ ] Show paired devices list
+- [x] Implement pairing API (list pending, approve, reject)
+- [x] Create pairing list UI
+- [x] Create approve/reject modals
+- [x] Show paired devices list
 
 **API Routes:**
 - `GET /api/instances/[id]/pairing` - List pending & paired
@@ -602,11 +602,11 @@ CREATE POLICY "Users can manage channels via instance" ON molthome.channels
 ### Week 7: Billing & Settings
 
 #### Day 31-32: Billing Dashboard
-- [ ] Create billing overview page
-- [ ] Show current plan and status
+- [x] Create billing overview page
+- [x] Show current plan and status
 - [ ] Show usage metrics
-- [ ] Add change plan button
-- [ ] Add cancel subscription button
+- [x] Add change plan button
+- [x] Add cancel subscription button
 
 **Pages:**
 - `app/(dashboard)/billing/page.tsx`
@@ -618,18 +618,18 @@ CREATE POLICY "Users can manage channels via instance" ON molthome.channels
 - `components/billing/plan-selector.tsx`
 
 #### Day 33: Invoice History
-- [ ] Fetch invoices from Paddle
-- [ ] Create invoice list page
+- [x] Fetch invoices from Paddle
+- [x] Create invoice list page
 - [ ] Add PDF download links
 
 **Pages:**
 - `app/(dashboard)/billing/invoices/page.tsx`
 
 #### Day 34-35: User Settings
-- [ ] Create profile settings page
-- [ ] Implement name update
-- [ ] Create API keys management page
-- [ ] Implement save/delete API keys (encrypted)
+- [x] Create profile settings page
+- [x] Implement name update
+- [x] Create API keys management page
+- [x] Implement save/delete API keys (encrypted)
 
 **Pages:**
 - `app/(dashboard)/settings/page.tsx`
@@ -642,7 +642,7 @@ CREATE TABLE molthome.api_keys (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES molthome.users(id) ON DELETE CASCADE,
   name TEXT NOT NULL,
-  type TEXT NOT NULL CHECK (type IN ('anthropic')),
+  type TEXT NOT NULL CHECK (type IN ('anthropic', 'openai', 'gemini')),
   encrypted_value TEXT NOT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -684,11 +684,11 @@ CREATE POLICY "Users can manage own API keys" ON molthome.api_keys
 - [ ] Review CORS settings
 
 #### Day 40: Deployment & Launch
-- [ ] Set up Vercel project
-- [ ] Configure environment variables
+- [x] Set up Vercel project
+- [x] Configure environment variables
 - [ ] Set up custom domain
 - [ ] Configure Paddle production webhooks
-- [ ] Deploy to production
+- [x] Deploy to production
 - [ ] Smoke test all features
 
 ---
