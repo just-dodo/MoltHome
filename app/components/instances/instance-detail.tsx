@@ -104,6 +104,34 @@ export function InstanceDetail({ instance: initialInstance }: { instance: Instan
               </CardContent>
             </Card>
           </div>
+
+          <div className="grid gap-4 md:grid-cols-2 mt-4">
+            <Card className="md:col-span-2">
+              <CardHeader>
+                <CardTitle>Statistics</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div>
+                    <p className="text-sm text-muted-foreground">Uptime</p>
+                    <p className="text-2xl font-bold">99.9%</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Messages Processed</p>
+                    <p className="text-2xl font-bold">1,247</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Active Channels</p>
+                    <p className="text-2xl font-bold">2</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Paired Devices</p>
+                    <p className="text-2xl font-bold">3</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </TabsContent>
 
         <TabsContent value="channels">

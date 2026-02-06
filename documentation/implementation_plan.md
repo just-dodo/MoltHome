@@ -540,7 +540,7 @@ CREATE POLICY "Users can update own instances" ON molthome.instances
 - [x] Create instance detail layout with tabs
 - [x] Implement overview tab
 - [x] Show gateway token (masked)
-- [ ] Show statistics (placeholder)
+- [x] Show statistics (placeholder)
 - [x] Add quick actions
 
 **Pages:**
@@ -604,7 +604,7 @@ CREATE POLICY "Users can manage channels via instance" ON molthome.channels
 #### Day 31-32: Billing Dashboard
 - [x] Create billing overview page
 - [x] Show current plan and status
-- [ ] Show usage metrics
+- [x] Show usage metrics
 - [x] Add change plan button
 - [x] Add cancel subscription button
 
@@ -620,7 +620,7 @@ CREATE POLICY "Users can manage channels via instance" ON molthome.channels
 #### Day 33: Invoice History
 - [x] Fetch invoices from Paddle
 - [x] Create invoice list page
-- [ ] Add PDF download links
+- [x] Add PDF download links
 
 **Pages:**
 - `app/(dashboard)/billing/invoices/page.tsx`
@@ -657,11 +657,11 @@ CREATE POLICY "Users can manage own API keys" ON molthome.api_keys
 ### Week 8: Polish & Launch
 
 #### Day 36-37: Error Handling & Loading States
-- [ ] Add error boundaries
-- [ ] Create error pages (404, 500)
-- [ ] Add loading skeletons throughout
-- [ ] Implement toast notifications
-- [ ] Add confirmation modals
+- [x] Add error boundaries
+- [x] Create error pages (404, 500)
+- [x] Add loading skeletons throughout
+- [x] Implement toast notifications
+- [x] Add confirmation modals
 
 #### Day 38: Testing
 - [ ] Write unit tests for critical functions

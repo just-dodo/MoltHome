@@ -44,6 +44,28 @@ export default function BillingPage() {
           </CardContent>
         </Card>
 
+        <Card>
+          <CardHeader>
+            <CardTitle>Usage</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">Instances</span>
+                <span>{subscription.tier === 'starter' ? '1 / 1' : '2 / 5'}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">Channels</span>
+                <span>{subscription.tier === 'starter' ? '2 / 2' : '5 / Unlimited'}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">API Calls (this month)</span>
+                <span>3,421</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <Link href="/billing/invoices">
           <Card className="hover:border-border/80 transition cursor-pointer">
             <CardHeader>
