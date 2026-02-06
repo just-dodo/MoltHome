@@ -5,11 +5,14 @@ interface SlackMessagePayload {
   blocks?: any;
 }
 
-const SLACK_WEBHOOK_URL =
-  'https://hooks.slack.com/services/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';
+const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL || '';
 
 async function sendSlackMessage(payload: SlackMessagePayload) {
-  try {
+  try {    
+    if (!SLACK_WEBHOOK_URL) {
+      console.error('SLACK_WEBHOOK_URL is not set');
+      return null;
+    }
     const response = await fetch(SLACK_WEBHOOK_URL, {
       method: 'POST',
       body: JSON.stringify(payload),
